@@ -8,6 +8,7 @@ export default function List(props) { // 1. props를 준다
     useEffect(() => {
         const getData = async () => {
             const result = await getUserList();
+            console.log(result);
             setData(result);
         };
         getData();
@@ -18,11 +19,10 @@ export default function List(props) { // 1. props를 준다
         {/* {props.params.num} */}
         {/* 2. params의 id에 해당하는 값을 가져올 수 있다. */}
         {/* <button type="button" className="bg-red-300 p-1" onClick={fetchDataFromAPI}>Fetch Data from API</button><br /><br /> */}
-        {data?.rows?.map((item, index) => (
+        {data?.rows[0]?.map((item, index) => (
             <ul key={index}>
-                <li>{item.id}</li>
-                <li>{item.email}</li>
-                <li>{item.name}</li>
+                <li>{item.username}</li>
+                <li>{item.mobile}</li>
             </ul>
         ))}
 

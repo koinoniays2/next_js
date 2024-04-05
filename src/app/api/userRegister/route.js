@@ -1,4 +1,4 @@
-import { createConnection } from "mariadb";
+import mysql from 'mysql2/promise'
 import { NextResponse } from "next/server";
 import getConfig from 'next/config';
 
@@ -7,11 +7,10 @@ export async function POST(req, res) {
     try {
         // 클라이언트에서 요청으로부터 사용자 정보를 가져옴
         const data = await req.json(); // 요청 본문 파싱
-        const {id, email} = data;
-        console.log(id, email);
-        // console.log(serverRuntimeConfig.DB_URL);
+        const {username, mobile} = data;
+        // console.log(username, mobile);
         // 데이터베이스 연결
-        const connection = await createConnection({
+        const connection = await mysql.createConnection({
             host: serverRuntimeConfig.DB_URL,
             user: serverRuntimeConfig.DB_USER,
             password: serverRuntimeConfig.DB_PASSWORD,
@@ -20,8 +19,7 @@ export async function POST(req, res) {
         });
 
         // 사용자 정보를 데이터베이스에 삽입
-        await connection.query("INSERT INTO users (id, password, name, email, mobile_tel) VALUES (?, ?, ?, ?, ?)", [id, "", "", email, ""]);
-
+        await connection.query("INSERT INTO users (username, mobile) VALUES (?, ?)", [username, mobile]);
         // 데이터베이스 연결 종료
         await connection.end();
 

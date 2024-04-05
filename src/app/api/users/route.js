@@ -1,12 +1,11 @@
-import { createConnection } from "mariadb";
+import mysql from 'mysql2/promise'
 import { NextResponse } from "next/server";
 import getConfig from 'next/config';
 
 const { serverRuntimeConfig } = getConfig();
 export async function GET() {
     try {
-        console.log(serverRuntimeConfig.DB_URL);
-        const connection = await createConnection({
+        const connection = await mysql.createConnection({
             host: serverRuntimeConfig.DB_URL,
             user: serverRuntimeConfig.DB_USER,
             password: serverRuntimeConfig.DB_PASSWORD,

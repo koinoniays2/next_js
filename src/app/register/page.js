@@ -24,34 +24,35 @@ export default function Register() {
     return (
         <>
         <form className="w-full max-w-xl" onSubmit={handleSubmit(onSubmit)}>
-            {/* 아이디 */}
+            {/* 이름 */}
             <div className="w-full">
-                <input className="w-full" type="text" {...register("id", {
-                    required: "아이디를 입력해 주세요.",
-                    minLength: {value:4, message: "최소 4글자 이상 입력해주세요."}
-                })} placeholder="아이디"/>
-                {errors?.id && (
+                <input className="w-full" type="text" 
+                {...register("username", {
+                    required: "이름을 입력해 주세요.",
+                    minLength: {value:2, message: "최소 2글자 이상 입력해주세요."}
+                })} placeholder="이름"/>
+                {errors?.username && (
                 <span className="text-red-500 text-sm">
-                    {errors?.id?.message}
+                    {errors?.username?.message}
                 </span>)}
             </div>
-            {/* 이메일 */}
+            {/* 폰번호 */}
             <div className="w-full">
-                <input className="w-full" type="text" placeholder="이메일"
-                {...register("email", {
-                    required: "이메일을 입력해주세요.",
+                <input className="w-full" type="text" placeholder="휴대폰번호"
+                {...register("mobile", {
+                    required: "휴대폰번호를 입력해주세요.",
                     pattern: {
-                        value: /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-                        message: "이메일 형식으로 입력해 주세요." }
+                        value: /^01([0|1|6|7|8|9]?)-\d{3,4}-\d{4}$/,
+                        message: "휴대폰번호 형식으로 입력해 주세요." }
                 })}/>
-                {errors?.email && (
+                {errors?.mobile && (
                 <span className="text-red-600 text-sm">
-                    {errors?.email?.message}
+                    {errors?.mobile?.message}
                 </span>
                 )}
             </div>
             <div className="text-start">
-                <button type="submit" value="회원가입">회원가입</button>
+                <button type="submit" value="서비스 신청">서비스 신청</button>
             </div>
         </form>
         </>
