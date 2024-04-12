@@ -38,7 +38,7 @@ export async function POST(req, res) {
     const {name, mobile} = data;
     try {
         const encryptedMobile = encryptPhoneNumber(mobile); // 암호화
-        console.log(decryptPhoneNumber(encryptedMobile)); // 복호화
+        // console.log(decryptPhoneNumber(encryptedMobile)); // 복호화
         const [results, fields] = await connection.query(`SELECT * FROM alarm WHERE mobile = ?`, [encryptedMobile]);
         if (results.length > 0) {
             connection.end();
