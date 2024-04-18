@@ -70,7 +70,7 @@ export default function UserForm() {
             </span>
           )}
           {/*  --------------------체크박스 input-------------------- */}
-          <label className="text-white text-center py-4">
+          <label className="text-white text-center py-4 accent-yellow-300">
             <input
               type="checkbox"
               {...register("checkbox", { required: true })}
