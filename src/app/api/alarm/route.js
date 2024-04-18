@@ -2,17 +2,6 @@ import { connectToDatabase } from "@/utils/db";
 import { NextResponse } from "next/server";
 import crypto from 'crypto';
 
-export async function GET() {
-    const connection = await connectToDatabase();
-    try {
-        const [results, fields] = await connection.query("SELECT * FROM alarm");
-        await connection.end();
-        return NextResponse.json({results});
-    }catch (err) {
-        console.log(err);
-    }
-}
-
 // 암호화를 위한 키
 const encryptionKey = crypto.createHash('sha256').update("mySecretKey123").digest('hex').substring(0, 32);
 const fixedIV = Buffer.from('0123456789abcdef0123456789abcdef', 'hex');
